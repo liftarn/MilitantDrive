@@ -637,12 +637,12 @@ void MilitantDriveAudioProcessorEditor::resized()
     resetButton.setBounds(826, 20, 92, 26);
 
     // Rotary Knobs Layout
-    const int knobW = 90;
-    const int knobH = 104;
+    constexpr int knobW = 90;
+    constexpr int knobH = 104;
     const int row1KnobY = 142;
     const int row2KnobY = 304;
 
-    auto placeKnob = [knobW, knobH](juce::Slider& s, juce::Label& l, juce::Label& sl, int cx, int y)
+    auto placeKnob = [](juce::Slider& s, juce::Label& l, juce::Label& sl, int cx, int y)
     {
         const int left = cx - knobW / 2;
         l.setBounds(left, y - 30, knobW, 14);
@@ -662,8 +662,8 @@ void MilitantDriveAudioProcessorEditor::resized()
     placeKnob(boxCutSlider,     boxCutLabel,     boxCutSubLabel,     594, row1KnobY);
 
     // Illuminated Push-Buttons
-    const int btnSize = 44;
-    auto placeBtn = [btnSize](juce::TextButton& b, juce::Label& l, int cx, int y)
+    constexpr int btnSize = 44;
+    auto placeBtn = [](juce::TextButton& b, juce::Label& l, int cx, int y)
     {
         l.setBounds(cx - 44, y - 18, 88, 15);
         b.setBounds(cx - btnSize / 2, y, btnSize, btnSize);
