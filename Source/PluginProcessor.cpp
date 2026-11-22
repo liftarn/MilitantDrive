@@ -221,7 +221,7 @@ void MilitantDriveAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
     const float dcR = 1.0f - static_cast<float>((juce::MathConstants<double>::twoPi * 15.0) / osSampleRate);
 
     const size_t osNumSamples = osBlock.getNumSamples();
-    const size_t chCount = juce::jmin<size_t>(2, osBlock.getNumChannels());
+    const size_t chCount = std::min<size_t>(2, osBlock.getNumChannels());
 
     for (size_t i = 0; i < osNumSamples; ++i)
     {
