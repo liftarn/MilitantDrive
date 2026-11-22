@@ -50,6 +50,17 @@ target_link_libraries(MilitantDrive
         juce::juce_recommended_warning_flags
 )
 
+if(APPLE AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    foreach(_target IN ITEMS MilitantDrive MilitantDrive_VST3 MilitantDrive_AU MilitantDrive_Standalone)
+        if(TARGET ${_target})
+            target_compile_options(${_target} PRIVATE
+                $<$<COMPILE_LANGUAGE:CXX,OBJCXX>:-Wno-unknown-warning-option>
+                $<$<COMPILE_LANGUAGE:CXX,OBJCXX>:-Wno-nontrivial-memcall>
+            )
+        endif()
+    endforeach()
+endif()
+
 # Auto-embed Barlow .ttf font files if placed in Fonts/
 file(GLOB MILITANT_FONT_FILES "${CMAKE_CURRENT_SOURCE_DIR}/Fonts/*.ttf")
 if(MILITANT_FONT_FILES)
